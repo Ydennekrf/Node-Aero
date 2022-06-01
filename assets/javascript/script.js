@@ -9,7 +9,7 @@ let landmarkID = [];
 let airportID = [];
 let map;
 let cityInput = document.getElementById('searchBar')
-cityInput= "toronto"
+cityInput= "chicago"
 
 
 // sets the city search data into local storage
@@ -66,19 +66,33 @@ getLocationData = () => {
     attribution: '© OpenStreetMap'
     }).addTo(map);
     renderHotels();
-    // renderLandmarks();
-    // renderAirports();
+    renderLandmarks();
+    renderAirports();
+};
+//renders hotel markers onto map
+renderHotels = () => {
+    let hotels;
+    for ( i=0 ; i < hotelID.length ; i++){
+       hotels = L.marker([hotelID[i].latitude,hotelID[i].longitude]).addTo(map);
+    }
+};
+// renders landmark markers on to map
+renderLandmarks = () => {
+    let landmarks ;
+    for ( i=0 ; i < landmarkID.length ; i++){
+        landmarks = L.marker([landmarkID[i].latitude,landmarkID[i].longitude]).addTo(map);
+     }
+};
+// renders airport locations on to map
+renderAirports = () => {
+    let airports ;
+    for ( i=0 ; i < landmarkID.length ; i++){
+        airports = L.marker([airportID[i].latitude, airportID[i].longitude]).addTo(map);
+     }
 };
 
-renderHotels = () => {
-    let marker;
-    for ( i=0 ; i < hotelID.length ; i++){
-       marker = L.marker([hotelID[i].latitude,hotelID[i].longitude]).addTo(map);
-    }
-}
-
 ///TO DO: create a event delegation function for markers that will call the locationApi with the targets destination ID
-//TO DO:create map fetch API
+
 
 cityApi();
 
