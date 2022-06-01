@@ -73,21 +73,27 @@ getLocationData = () => {
 renderHotels = () => {
     let hotels;
     for ( i=0 ; i < hotelID.length ; i++){
-       hotels = L.marker([hotelID[i].latitude,hotelID[i].longitude]).addTo(map);
+       hotels = L.marker([hotelID[i].latitude,hotelID[i].longitude], {
+           color: 'red'
+       }).addTo(map);
     }
 };
 // renders landmark markers on to map
 renderLandmarks = () => {
     let landmarks ;
     for ( i=0 ; i < landmarkID.length ; i++){
-        landmarks = L.marker([landmarkID[i].latitude,landmarkID[i].longitude]).addTo(map);
+        landmarks = L.marker([landmarkID[i].latitude,landmarkID[i].longitude], {
+            color: 'green'
+        }).addTo(map);
      }
 };
 // renders airport locations on to map
 renderAirports = () => {
     let airports ;
     for ( i=0 ; i < landmarkID.length ; i++){
-        airports = L.marker([airportID[i].latitude, airportID[i].longitude]).addTo(map);
+        airports = L.marker([airportID[i].latitude, airportID[i].longitude], {
+            color: 'purple'
+        }).addTo(map);
      }
 };
 
