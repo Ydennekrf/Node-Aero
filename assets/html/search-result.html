@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--adds tailwind-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- adds map css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+</head>
+<body>
+    
+    <div class="grid grid-cols-5 gap-4">
+        <div class="group bg-blue-100 text-center space-y-10 w-4/12 hover:w-auto h-screen border-r-4 border-sky-500">
+            <h2 class="text-4xl invisible group-hover:visible">Search:</h2>
+            <div>
+                <h2 class="text-4xl invisible group-hover:visible">rating</h2>
+            </div>
+
+            <div>
+                <h2 class="text-4xl invisible group-hover:visible">distance</h2>
+            </div>
+
+            <div>
+                <h2 class="text-4xl invisible group-hover:visible">money</h2>
+            </div>
+
+            <div class="relative ">
+                <div class="h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-90 absolute bottom-0 right-12 group-hover:invisible"></div>
+            </div>
+        </div>
+            
+   
+
+        <div class="col-span-4">
+
+            <div class="text-center">
+                <h1 class="text-5xl"><span id="cityName">City Name or Something</span></h1>
+            </div>
+
+            <div>
+                <!--Adding the map here-->
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--adds map javascript library  -->
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+crossorigin=""></script>
+<script src="./assets/javascript/script.js"></script>
+</body>
+</html>
