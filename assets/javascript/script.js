@@ -10,9 +10,7 @@ let airportID = [];
 
 let cityInput = document.getElementById('searchBar')
 cityInput= "toronto"
-let placesApiKey = "fsq3Rv7ZwC4smt99Bbgq6eiQ0/jyvrX63D5oHTzxdzAcxr4="
-let apiKey = "a772a40f5da703f3736db6d33655ff2f"
-let mapKey = 'InEKlQR1jnjlHkosB4GL5ah3MoWgKUq5'
+
 
 // sets the city search data into local storage
 cityApi = () => {
@@ -38,7 +36,7 @@ LocationApi = () => {
             'X-RapidAPI-Key': 'c69deb147dmsh0a33f369dfd1aeap11aebdjsn706b5eab161a'
         }
     };
-    fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${locationID}&checkIn=moment().format('YYYY MM DD')&checkOut=moment().add("1", "days").format('YYYY MM DD')&adults1=1&currency=USD&locale=en_US`, options)
+    fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${locationID}&adults1=1&currency=USD&locale=en_US`, options)
         .then(response => response.json())
         .then(response => console.log(response),
         localStorage.setItem("detailsData", JSON.stringify(response)))
@@ -63,6 +61,7 @@ getLocationData = () => {
 
 
 ///TO DO: create a event delegation function for markers that will call the locationApi with the targets destination ID
+//TO DO:create map fetch API
 cityApi();
 
 
