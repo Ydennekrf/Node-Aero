@@ -47,11 +47,11 @@ getLocationData = () => {
     response = JSON.parse(localStorage.getItem('cityData'))
     
     for (let i=0 ; i < 3 ; i++ ) {
-        hotelID.push(response.suggestions[1].entities[i].destinationId);}
+        hotelID.push(response.suggestions[1].entities[i]);}
     for (let i=0 ; i < 3 ; i++ ) { 
-        landmarkID.push(response.suggestions[2].entities[i].destinationId);}
+        landmarkID.push(response.suggestions[2].entities[i]);}
     for (let i=0 ; i < 2 ; i++ ) {  
-        airportID.push(response.suggestions[3].entities[i].destinationId);}
+        airportID.push(response.suggestions[3].entities[i]);}
         cityLong = response.suggestions[0].entities[0].longitude;
         cityLat = response.suggestions[0].entities[0].latitude;
         console.log(hotelID);
@@ -64,10 +64,18 @@ getLocationData = () => {
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
-}).addTo(map);
-
+    }).addTo(map);
+    renderHotels();
+    // renderLandmarks();
+    // renderAirports();
 };
 
+renderHotels = () => {
+    let marker;
+    for ( i=0 ; i < hotelID.length ; i++){
+       marker = L.marker([hotelID[i].latitude,hotelID[i].longitude]).addTo(map);
+    }
+}
 
 ///TO DO: create a event delegation function for markers that will call the locationApi with the targets destination ID
 //TO DO:create map fetch API
