@@ -60,7 +60,13 @@ getLocationData = () => {
         console.log(cityLong);
         console.log(cityLat);
         map = L.map('map').setView([cityLat, cityLong], 10);
-}
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+};
 
 
 ///TO DO: create a event delegation function for markers that will call the locationApi with the targets destination ID
