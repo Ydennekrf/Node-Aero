@@ -1,7 +1,0 @@
-.grid-container {
-    display: grid;
-    grid-template:
-      "header  header"
-      "sidebar main"   1fr
-      "footer  footer" min-content
-      / 250px   
