@@ -14,36 +14,37 @@
 </head>
 <body>
     
-    <div class="grid grid-cols-5 gap-4">
-        <div class="group bg-blue-100 text-center space-y-10 w-4/12 hover:w-auto h-screen border-r-4 border-sky-500">
-            <h2 class="text-4xl invisible group-hover:visible">Search:</h2>
+    <div class="grid grid-cols-10 gap-4">
+        <div class="group col-span-2 bg-blue-100 text-center space-y-10 w-auto hover:w-4/12 hover:col-span-1 h-screen border-r-4 border-sky-500">
+            <h2 class="text-4xl visible group-hover:invisible">Search:</h2>
             <div>
-                <h2 class="text-4xl invisible group-hover:visible">rating</h2>
+                <h2 class="text-4xl visible group-hover:invisible">rating</h2>
             </div>
 
             <div>
-                <h2 class="text-4xl invisible group-hover:visible">distance</h2>
+                <h2 class="text-4xl visible group-hover:invisible">distance</h2>
             </div>
 
             <div>
-                <h2 class="text-4xl invisible group-hover:visible">money</h2>
+                <h2 class="text-4xl visible group-hover:invisible">money</h2>
             </div>
 
-            <div class="relative ">
-                <div class="h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-90 absolute bottom-0 right-12 group-hover:invisible"></div>
+            <div class="relative button">
+                <button class="h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-90 absolute bottom-0 right-0" id="sidebar"></button>
             </div>
         </div>
             
    
 
-        <div class="col-span-4">
+        <div class="col-span-8">
 
             <div class="text-center">
                 <h1 class="text-5xl"><span id="cityName">City Name or Something</span></h1>
             </div>
 
-            <div>
+            <div class='flex items-center justify-center h-screen'>
                 <!--Adding the map here-->
+                <img src="https://via.placeholder.com/500" alt="placeholder">
             </div>
         </div>
     </div>
