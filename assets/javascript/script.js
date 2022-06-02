@@ -78,12 +78,24 @@ getGeohash = () => {
     fetch(geoHash)
         .then(response => response.json())
         .then(response => localStorage.setItem("geoHash", JSON.stringify(response)))
+        .then(getTicketmaster())
         .catch(err => console.error(err));
 };
 
 getTicketmaster = () => {
-    let getEvent = `https://app.ticketmaster.com/discovery/v2/events.json?size=10&geoPoint=${geoData}&radius=10&apikey=4ebPTDeBjLhHylxMc6U1W4TzPXQVFCG1`
-}
+    let geoData = JSON.parse(localStorage.getItem('geoHash'))
+    console.log(geoData)
+    let geoDataTarget = geoData.results[0].annotations.geohash;
+    let geoDataShort = geoDataTarget.slice(0,6)
+    console.log(geoDataTarget);
+    console.log(geoDataShort);
+    let getEvent = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&size=10&geoPoint=${geoDataShort}&radius=10&apikey=4ebPTDeBjLhHylxMc6U1W4TzPXQVFCG1`;
+
+    fetch(getEvent)
+        .then(response => response.json())
+        .then(response => localStorage.setItem("eventData", JSON.stringify(response)))
+        .catch(err => console.error(err))
+};
 
 
 //renders hotel markers onto map
