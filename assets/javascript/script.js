@@ -27,6 +27,7 @@ cityApi = () => {
         .catch(err => console.error(err));
         getLocationData();   
 };
+
 // sets the location details into local storage
 detailsApi = () => {
     const options = {
@@ -52,8 +53,8 @@ getLocationData = () => {
         landmarkID.push(response.suggestions[2].entities[i]);}
     for (let i=0 ; i < 2 ; i++ ) {  
         airportID.push(response.suggestions[3].entities[i]);}
-        cityLong = response.suggestions[0].entities[0].longitude;
-        cityLat = response.suggestions[0].entities[0].latitude;
+    cityLong = response.suggestions[0].entities[0].longitude;
+    cityLat = response.suggestions[0].entities[0].latitude;
         console.log(hotelID);
         console.log(landmarkID);
         console.log(airportID);
@@ -68,7 +69,23 @@ getLocationData = () => {
     renderHotels();
     renderLandmarks();
     renderAirports();
+    getGeohash();
 };
+// converts the long and lat coordinates into a geohash code to be used in ticketmaster api to set location.
+getGeohash = () => {
+    let geoHash = `https://api.opencagedata.com/geocode/v1/json?q=${cityLat}+${cityLong}&key=fb9a0a14a4de4cdc9f8ebf4290b6a0c5`;
+    console.log("hello")
+    fetch(geoHash)
+        .then(response => response.json())
+        .then(response => localStorage.setItem("geoHash", JSON.stringify(response)))
+        .catch(err => console.error(err));
+};
+
+getTicketmaster = () => {
+    let getEvent = `https://app.ticketmaster.com/discovery/v2/events.json?size=10&geoPoint=${geoData}&radius=10&apikey=4ebPTDeBjLhHylxMc6U1W4TzPXQVFCG1`
+}
+
+
 //renders hotel markers onto map
 renderHotels = () => {
     let hotels;
@@ -90,7 +107,8 @@ renderLandmarks = () => {
 // renders airport locations on to map
 renderAirports = () => {
     let airports ;
-    for ( i=0 ; i < landmarkID.length ; i++){
+    
+    for ( i=0 ; i < airportID.length ; i++){
         airports = L.marker([airportID[i].latitude, airportID[i].longitude], {
             color: 'purple'
         }).addTo(map);
@@ -101,5 +119,6 @@ renderAirports = () => {
 
 
 cityApi();
+
 
 
