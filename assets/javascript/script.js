@@ -9,7 +9,7 @@ let landmarkID = [];
 let airportID = [];
 let map;
 let cityInput = document.getElementById('searchBar')
-cityInput= "chicago"
+cityInput= "toronto"
 
 
 // sets the city search data into local storage
@@ -89,13 +89,31 @@ getTicketmaster = () => {
     let geoDataShort = geoDataTarget.slice(0,6)
     console.log(geoDataTarget);
     console.log(geoDataShort);
-    let getEvent = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&size=10&geoPoint=${geoDataShort}&radius=10&apikey=4ebPTDeBjLhHylxMc6U1W4TzPXQVFCG1`;
+    let getEvent = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&size=20&geoPoint=${geoDataShort}&radius=10&apikey=4ebPTDeBjLhHylxMc6U1W4TzPXQVFCG1`;
 
     fetch(getEvent)
         .then(response => response.json())
         .then(response => localStorage.setItem("eventData", JSON.stringify(response)))
+        .then(renderEvents())
         .catch(err => console.error(err))
 };
+
+//renders events onto map
+renderEvents = () => {
+    let events;
+    let eventData = JSON.parse(localStorage.getItem('eventData'))
+    
+    for(i = 0 ; i < 10; i++) {
+
+        let eventLat = eventData._embedded.events[i]._embedded.venues[0].location.latitude;
+        let eventLong = eventData._embedded.events[i]._embedded.venues[0].location.longitude;
+        console.log(eventLat);
+        console.log(eventLong);
+        events = L.marker([eventLat, eventLong], {
+            color: "red"
+        }).addTo(map);
+    }
+}
 
 
 //renders hotel markers onto map
