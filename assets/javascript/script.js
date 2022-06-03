@@ -9,7 +9,7 @@ let landmarkID = [];
 let airportID = [];
 let map;
 let cityInputEl = document.getElementById('searchBar')
-cityInput= "toronto"
+let cityInput;
 let eventsArr = [];
 let locationID;
 let hotels = [];
@@ -18,10 +18,10 @@ let locationArr = [];
 // saving user data to cityInput and redirecting to the search result page.
 
 function userSave() {
-    cityInput = document.getElementById('searchBar').value;
+    cityInput = document.getElementById('userInput').value;
     console.log(cityInput);
-    if (window.location('./index.html')) {
-    window.replace('./assets/html/search-result.html')};
+    
+    window.location.replace = ('search-result.html');
 }
 
 // sets the city search data into local storage
@@ -54,7 +54,6 @@ detailsApi = (locationID) => {
         .then(response => response.json())
         .then(function (data) {
             locationArr.push(data)
-            console.log(locationArr)
             localStorage.setItem("locationData", JSON.stringify(locationArr))
         }
         )
@@ -66,16 +65,11 @@ getLocationData = () => {
     
     for (let i=0 ; i < 3 ; i++ ) {
         hotelID.push(response.suggestions[1].entities[i]);}
-    for (let i=0 ; i < 3 ; i++ ) { 
-        landmarkID.push(response.suggestions[2].entities[i]);}
-    for (let i=0 ; i < 2 ; i++ ) {  
-        airportID.push(response.suggestions[3].entities[i]);}
     cityLong = response.suggestions[0].entities[0].longitude;
     cityLat = response.suggestions[0].entities[0].latitude;
         map = L.map('map').setView([cityLat, cityLong], 10);
-
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 15,
     attribution: '© OpenStreetMap'
     }).addTo(map);
   
