@@ -1,0 +1,23 @@
+#skyline-art {
+    justify-content: center;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.zelda-logo {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#selectors{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 200%;
+}
