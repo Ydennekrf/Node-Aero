@@ -76,9 +76,8 @@ getLocationData = () => {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
     }).addTo(map);
+  
     renderHotels();
-    renderLandmarks();
-    renderAirports();
     getGeohash();
 };
 // converts the long and lat coordinates into a geohash code to be used in ticketmaster api to set location.
@@ -146,48 +145,25 @@ renderEvents = () => {
 };
 //renders hotel markers onto map
 renderHotels = () => { 
-    console.log(hotelID[2].destinationId)
-    let hotelLoc = [['hotel1', hotelID[0].latitude, hotelID[0].longitude],
-                    ['hotel2', hotelID[1].latitude, hotelID[1].longitude],
-                    ['hotel3', hotelID[2].latitude, hotelID[2].longitude]]
+    let hotelData = JSON.parse(localStorage.getItem('locationData'))
+    
     for ( i=0 ; i < hotelID.length ; i++){
         locationID = hotelID[i].destinationId
-        
         detailsApi(locationID);
         
+        let hotelName = hotelData[i].data.body.propertyDescription.name
+        let hotelAddress = hotelData[i].data.body.propertyDescription.fullAddress;
+        let price = hotelData[i].data.body.propertyDescription.featuredPrice.currentPrice.plain;
+        let rating = hotelData[i].data.body.guestReviews.brands.rating;
+        
+        let hotelLoc = [[`<b>${hotelName}</b><br><p>Address: ${hotelAddress}<br>Rating: ${rating} out of 10<br>Price per night:${price}`, hotelID[0].latitude, hotelID[0].longitude],
+                    [`<b>${hotelName}</b><br><p>Address: ${hotelAddress}<br>Rating: ${rating} out of 10<br>Price per night:${price}`, hotelID[1].latitude, hotelID[1].longitude],
+                    [`<b>${hotelName}</b><br><p>Address: ${hotelAddress}<br>Rating: ${rating} out of 10<br>Price per night:${price}`, hotelID[2].latitude, hotelID[2].longitude]]
+      
        hotels = new L.marker([hotelLoc[i][1],hotelLoc[i][2]], {
            riseOnHover: true
        }).bindPopup(hotelLoc[i][0]).addTo(map); 
     }
-};
-
-// renders landmark markers on to map and creates the popup 
-renderLandmarks = () => {
-    let landmarks ;
-    let landmarkLoc = [['loction1', landmarkID[0].latitude, landmarkID[0].longitude],
-                        ['location2', landmarkID[1].latitude, landmarkID[1].longitude],
-                        ['location3', landmarkID[2].latitude, landmarkID[2].longitude]]
-    for ( i=0 ; i < landmarkID.length ; i++){
-        locationID = landmarkID[i].destinationId
-        detailsApi(locationID);
-        landmarks = new L.marker([landmarkLoc[i][1], landmarkLoc[i][2]], {
-            riseOnHover: true
-        }).bindPopup(landmarkLoc[i][0]).addTo(map);
-     }
-};
-
-// renders airport locations on to map
-renderAirports = () => {
-    let airports ;
-    let airportLoc = [['airport1', airportID[0].latitude, airportID[0].longitude],
-                    ['airport2', airportID[1].latitude, airportID[1].longitude]]
-    for ( i=0 ; i < airportID.length ; i++){
-        locationID = airportID[i].destinationId
-        detailsApi(locationID);
-        airports = L.marker([airportID[i].latitude, airportID[i].longitude], {
-            riseOnHover: true
-        }).bindPopup(airportLoc[i][0]).addTo(map);
-     }
 };
 
 cityApi();
