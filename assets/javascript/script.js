@@ -8,7 +8,7 @@ let hotelID = [];
 let landmarkID = [];
 let airportID = [];
 let map;
-let cityInput = document.getElementById('searchBar')
+let cityInputEl = document.getElementById('searchBar')
 cityInput= "toronto"
 let eventsArr = [];
 let locationID;
@@ -18,7 +18,7 @@ let locationArr = [];
 // saving user data
 
 function userSave() {
-    let cityInput = document.getElementById("userInput").value;
+    cityInput = document.getElementById("userInput").value;
     console.log(cityInput);
 }
 
@@ -152,7 +152,7 @@ renderHotels = () => {
         detailsApi(locationID);
         
         let hotelName = hotelData[i].data.body.propertyDescription.name
-        let hotelAddress = hotelData[i].data.body.propertyDescription.fullAddress;
+        let hotelAddress = hotelData[i].data.body.propertyDescription.address.fullAddress;
         let price = hotelData[i].data.body.propertyDescription.featuredPrice.currentPrice.plain;
         let rating = hotelData[i].data.body.guestReviews.brands.rating;
         
