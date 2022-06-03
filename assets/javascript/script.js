@@ -45,7 +45,12 @@ detailsApi = (locationID) => {
     };
     fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${locationID}&adults1=1&currency=USD&locale=en_US`, options)
         .then(response => response.json())
-        .then(response => localStorage.setItem("locationData", JSON.stringify(locationArr.push(response))))
+        .then(function (data) {
+            locationArr.push(data)
+            console.log(locationArr)
+            localStorage.setItem("locationData", JSON.stringify(locationArr))
+        }
+        )
         .catch(err => console.error(err));
 };         
 
@@ -158,6 +163,8 @@ renderLandmarks = () => {
                         ['location2', landmarkID[1].latitude, landmarkID[1].longitude],
                         ['location3', landmarkID[2].latitude, landmarkID[2].longitude]]
     for ( i=0 ; i < landmarkID.length ; i++){
+        locationID = landmarkID[i].destinationId
+        detailsApi(locationID);
         landmarks = new L.marker([landmarkLoc[i][1], landmarkLoc[i][2]], {
             riseOnHover: true
         }).bindPopup(landmarkLoc[i][0]).addTo(map);
@@ -170,6 +177,8 @@ renderAirports = () => {
     let airportLoc = [['airport1', airportID[0].latitude, airportID[0].longitude],
                     ['airport2', airportID[1].latitude, airportID[1].longitude]]
     for ( i=0 ; i < airportID.length ; i++){
+        locationID = airportID[i].destinationId
+        detailsApi(locationID);
         airports = L.marker([airportID[i].latitude, airportID[i].longitude], {
             riseOnHover: true
         }).bindPopup(airportLoc[i][0]).addTo(map);
