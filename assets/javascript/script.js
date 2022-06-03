@@ -71,9 +71,9 @@ getLocationData = () => {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
     }).addTo(map);
-    renderHotels();
-    renderLandmarks();
-    renderAirports();
+    renderHotels(renderLandmarks);
+    // renderLandmarks();
+    // renderAirports();
     getGeohash();
 };
 // converts the long and lat coordinates into a geohash code to be used in ticketmaster api to set location.
@@ -142,18 +142,20 @@ renderEvents = () => {
 //renders hotel markers onto map
 renderHotels = () => { 
     console.log(hotelID[2].destinationId)
-    let hotelLoc = [['hotel1', hotelID[0].latitude, hotelID[0].longitude],
-                    ['hotel2', hotelID[1].latitude, hotelID[1].longitude],
-                    ['hotel3', hotelID[2].latitude, hotelID[2].longitude]]
+    
     for ( i=0 ; i < hotelID.length ; i++){
         locationID = hotelID[i].destinationId
-        
         detailsApi(locationID);
         
+        let hotelLoc = [['hotel1', hotelID[0].latitude, hotelID[0].longitude],
+                    ['hotel2', hotelID[1].latitude, hotelID[1].longitude],
+                    ['hotel3', hotelID[2].latitude, hotelID[2].longitude]]
+      
        hotels = new L.marker([hotelLoc[i][1],hotelLoc[i][2]], {
            riseOnHover: true
        }).bindPopup(hotelLoc[i][0]).addTo(map); 
     }
+    renderLandmarks(renderAirports);
 };
 
 // renders landmark markers on to map and creates the popup 
@@ -169,6 +171,7 @@ renderLandmarks = () => {
             riseOnHover: true
         }).bindPopup(landmarkLoc[i][0]).addTo(map);
      }
+     renderAirports();
 };
 
 // renders airport locations on to map
