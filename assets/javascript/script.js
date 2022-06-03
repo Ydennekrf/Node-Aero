@@ -103,101 +103,75 @@ getTicketmaster = () => {
 renderEvents = () => {
     let events;
     let eventData = JSON.parse(localStorage.getItem('eventData'))
-    
-    for(i = 0 ; i < 10; i++) {
-
-        let eventLat = eventData._embedded.events[i]._embedded.venues[0].location.latitude;
-        let eventLong = eventData._embedded.events[i]._embedded.venues[0].location.longitude;
-        events = L.marker([eventLat, eventLong], {
-            color: "red",
+      
+    for(i = 0 ; i < 19; i++) {
+        let eventPic = eventData._embedded.events[i].images[0];
+        let performerName = eventData._embedded.events[i].name;
+        let venueName = eventData._embedded.events[i]._embedded.venues[0].name;
+        let venueAddress = eventData._embedded.events[i]._embedded.venues[0].address.line1;
+        let date = eventData._embedded.events[i].dates.start.dateTime;
+        let link = eventData._embedded.events[i].url;
+        let eventLoc = [[`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[0]._embedded.venues[0].location.latitude, eventData._embedded.events[0]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[1]._embedded.venues[0].location.latitude, eventData._embedded.events[1]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[2]._embedded.venues[0].location.latitude, eventData._embedded.events[2]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[3]._embedded.venues[0].location.latitude, eventData._embedded.events[3]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[4]._embedded.venues[0].location.latitude, eventData._embedded.events[4]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[5]._embedded.venues[0].location.latitude, eventData._embedded.events[5]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[6]._embedded.venues[0].location.latitude, eventData._embedded.events[6]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[7]._embedded.venues[0].location.latitude, eventData._embedded.events[7]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[8]._embedded.venues[0].location.latitude, eventData._embedded.events[8]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[9]._embedded.venues[0].location.latitude, eventData._embedded.events[9]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[10]._embedded.venues[0].location.latitude, eventData._embedded.events[10]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[11]._embedded.venues[0].location.latitude, eventData._embedded.events[11]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[12]._embedded.venues[0].location.latitude, eventData._embedded.events[12]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[13]._embedded.venues[0].location.latitude, eventData._embedded.events[13]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[14]._embedded.venues[0].location.latitude, eventData._embedded.events[14]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[15]._embedded.venues[0].location.latitude, eventData._embedded.events[15]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[16]._embedded.venues[0].location.latitude, eventData._embedded.events[16]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[17]._embedded.venues[0].location.latitude, eventData._embedded.events[17]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[18]._embedded.venues[0].location.latitude, eventData._embedded.events[18]._embedded.venues[0].location.longitude],
+                    [`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`, eventData._embedded.events[19]._embedded.venues[0].location.latitude, eventData._embedded.events[19]._embedded.venues[0].location.longitude]] 
+        events = L.marker([eventData._embedded.events[i]._embedded.venues[0].location.latitude, eventData._embedded.events[i]._embedded.venues[0].location.longitude], {
             riseOnHover: true
-        }).addTo(map);
-        eventsArr.push(events);
+        }).bindPopup(eventLoc[i][0]).addTo(map);
     }
-
 };
-//handles the event location popups
-eventPopUp = (event) => {
-    let eventPopData = JSON.parse(localStorage.getItem('eventData'))
-        for ( i=0 ; i < 9 ; i++)
-        if (eventsArr[i]._latlng.lat === event.latlng.lat && eventsArr[i]._latlng.lng === event.latlng.lng){
-            marker.bindPopup("this is an event").openPopup();
-            // let eventPic = eventPopData._embedded.events[i].images[0];
-            // let performerName = eventPopData._embedded.events[i].name;
-            // let venueName = eventPopData._embedded.events[i]._embedded.venues[0].name;
-            // let venueAddress = eventPopData._embedded.events[i]._embedded.venues[0].address.line1;
-            // let date = eventPopData._embedded.events[i].dates.start.dateTime;
-            // let link = eventPopData._embedded.events[i].url;
-            //     marker.bindPopup(`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`).openPopup();
-            //     console.log("eventPop")
-        }
-    
-}
-
-
 //renders hotel markers onto map
 renderHotels = () => { 
+    console.log(hotelID[2])
+    let hotelLoc = [['hotel1', hotelID[0].latitude, hotelID[0].longitude],
+                    ['hotel2', hotelID[1].latitude, hotelID[1].longitude],
+                    ['hotel3', hotelID[2].latitude, hotelID[2].longitude]]
     for ( i=0 ; i < hotelID.length ; i++){
-       hotels[i] = L.marker([hotelID[i].latitude,hotelID[i].longitude], {
-           color: 'red',
+       hotels = new L.marker([hotelLoc[i][1],hotelLoc[i][2]], {
            riseOnHover: true
-       }).addTo(map); 
+       }).bindPopup(hotelLoc[i][0]).addTo(map); 
     }
 };
-//handles the hotel location pop ups
-hotelPopUp = (event) => {
-    console.log(hotels)
-    
-    for ( i=0 ; i < hotelID.length ; i++) {
-        console.log(hotelID[i])
-        console.log(event)
-        if (hotelID[i].latitude === event.latlng.lat && hotelID[i].longitude === event.latlng.lng) {
-            locationID = hotelID[i].destinationId
-            
-            detailsApi(locationID);
-            hotels[i].bindPopup("hello").openPopup();
-            
-        }
-    }
-}
-// renders landmark markers on to map
+
+// renders landmark markers on to map and creates the popup 
 renderLandmarks = () => {
     let landmarks ;
+    let landmarkLoc = [['loction1', landmarkID[0].latitude, landmarkID[0].longitude],
+                        ['location2', landmarkID[1].latitude, landmarkID[1].longitude],
+                        ['location3', landmarkID[2].latitude, landmarkID[2].longitude]]
     for ( i=0 ; i < landmarkID.length ; i++){
-        landmarks = L.marker([landmarkID[i].latitude,landmarkID[i].longitude], {
-            color: 'green',
+        landmarks = new L.marker([landmarkLoc[i][1], landmarkLoc[i][2]], {
             riseOnHover: true
-        }).addTo(map);
-        // detailsApi();
+        }).bindPopup(landmarkLoc[i][0]).addTo(map);
      }
 };
-//handles the landmark location pop ups
-landmarkPopUp = () => {
 
-}
 // renders airport locations on to map
 renderAirports = () => {
     let airports ;
-    
+    let airportLoc = [['airport1', airportID[0].latitude, airportID[0].longitude],
+                    ['airport2', airportID[1].latitude, airportID[1].longitude]]
     for ( i=0 ; i < airportID.length ; i++){
         airports = L.marker([airportID[i].latitude, airportID[i].longitude], {
-            color: 'purple',
             riseOnHover: true
-        }).addTo(map);
-        // detailsApi();
+        }).bindPopup(airportLoc[i][0]).addTo(map);
      }
 };
-//handles the airport location popups
-airportPopUp = () => {
-
-}
-
-///TO DO: create a event delegation function for markers that will call the locationApi with the targets destination ID
-
 
 cityApi();
-
-map.on('click', eventPopUp);
-map.on('click', hotelPopUp);
-map.on('click', landmarkPopUp);
-map.on('click', airportPopUp);
