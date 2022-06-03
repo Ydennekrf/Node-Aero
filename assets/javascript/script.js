@@ -10,6 +10,10 @@ let airportID = [];
 let map;
 let cityInput = document.getElementById('searchBar')
 cityInput= "toronto"
+let eventsArr = [];
+let locationsObj = [];
+let hotels = [];
+
 
 
 // sets the city search data into local storage
@@ -18,7 +22,7 @@ cityApi = () => {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-            'X-RapidAPI-Key': 'c69deb147dmsh0a33f369dfd1aeap11aebdjsn706b5eab161a'
+            'X-RapidAPI-Key': '6524af2719msh3e65b8fd93f7037p1cda72jsndb7a478aac3b'
         }
     }; 
     fetch(`https://hotels4.p.rapidapi.com/locations/v2/search?query=${cityInput}&locale=en_US&currency=CAD`, options)
@@ -34,13 +38,16 @@ detailsApi = () => {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-            'X-RapidAPI-Key': 'c69deb147dmsh0a33f369dfd1aeap11aebdjsn706b5eab161a'
+            'X-RapidAPI-Key': '6524af2719msh3e65b8fd93f7037p1cda72jsndb7a478aac3b'
         }
     };
     fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${locationID}&adults1=1&currency=USD&locale=en_US`, options)
         .then(response => response.json())
-        .then(response => console.log(response),
-        localStorage.setItem("detailsData", JSON.stringify(response)))
+        .then(response => console.log(response))
+        // .then(console.log(locationsObj))
+        // .then(locationsObj.push(response))
+        
+        // .then(localStorage.setItem("detailsData", JSON.stringify(locationsObj)))
         .catch(err => console.error(err));
 };
 
@@ -55,11 +62,6 @@ getLocationData = () => {
         airportID.push(response.suggestions[3].entities[i]);}
     cityLong = response.suggestions[0].entities[0].longitude;
     cityLat = response.suggestions[0].entities[0].latitude;
-        console.log(hotelID);
-        console.log(landmarkID);
-        console.log(airportID);
-        console.log(cityLong);
-        console.log(cityLat);
         map = L.map('map').setView([cityLat, cityLong], 10);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -74,7 +76,7 @@ getLocationData = () => {
 // converts the long and lat coordinates into a geohash code to be used in ticketmaster api to set location.
 getGeohash = () => {
     let geoHash = `https://api.opencagedata.com/geocode/v1/json?q=${cityLat}+${cityLong}&key=fb9a0a14a4de4cdc9f8ebf4290b6a0c5`;
-    console.log("hello")
+    
     fetch(geoHash)
         .then(response => response.json())
         .then(response => localStorage.setItem("geoHash", JSON.stringify(response)))
@@ -84,11 +86,10 @@ getGeohash = () => {
 
 getTicketmaster = () => {
     let geoData = JSON.parse(localStorage.getItem('geoHash'))
-    console.log(geoData)
+    
     let geoDataTarget = geoData.results[0].annotations.geohash;
     let geoDataShort = geoDataTarget.slice(0,6)
-    console.log(geoDataTarget);
-    console.log(geoDataShort);
+   
     let getEvent = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&size=20&geoPoint=${geoDataShort}&radius=10&apikey=4ebPTDeBjLhHylxMc6U1W4TzPXQVFCG1`;
 
     fetch(getEvent)
@@ -107,48 +108,96 @@ renderEvents = () => {
 
         let eventLat = eventData._embedded.events[i]._embedded.venues[0].location.latitude;
         let eventLong = eventData._embedded.events[i]._embedded.venues[0].location.longitude;
-        console.log(eventLat);
-        console.log(eventLong);
         events = L.marker([eventLat, eventLong], {
-            color: "red"
+            color: "red",
+            riseOnHover: true
         }).addTo(map);
+        eventsArr.push(events);
     }
+
+};
+//handles the event location popups
+eventPopUp = (event) => {
+    let eventPopData = JSON.parse(localStorage.getItem('eventData'))
+        for ( i=0 ; i < 9 ; i++)
+        if (eventsArr[i]._latlng.lat === event.latlng.lat && eventsArr[i]._latlng.lng === event.latlng.lng){
+            marker.bindPopup("this is an event").openPopup();
+            // let eventPic = eventPopData._embedded.events[i].images[0];
+            // let performerName = eventPopData._embedded.events[i].name;
+            // let venueName = eventPopData._embedded.events[i]._embedded.venues[0].name;
+            // let venueAddress = eventPopData._embedded.events[i]._embedded.venues[0].address.line1;
+            // let date = eventPopData._embedded.events[i].dates.start.dateTime;
+            // let link = eventPopData._embedded.events[i].url;
+            //     marker.bindPopup(`<img src="${eventPic}"><b>${performerName}</b><br><p>Live at ${venueName}<br>${venueAddress}<br>Date:${date} <a href="${link}">Get Tickets Here</a>`).openPopup();
+            //     console.log("eventPop")
+        }
+    
 }
 
 
 //renders hotel markers onto map
-renderHotels = () => {
-    let hotels;
+renderHotels = () => { 
     for ( i=0 ; i < hotelID.length ; i++){
-       hotels = L.marker([hotelID[i].latitude,hotelID[i].longitude], {
-           color: 'red'
-       }).addTo(map);
+       hotels[i] = L.marker([hotelID[i].latitude,hotelID[i].longitude], {
+           color: 'red',
+           riseOnHover: true
+       }).addTo(map); 
     }
 };
+//handles the hotel location pop ups
+hotelPopUp = (event) => {
+    console.log(hotels)
+    
+    for ( i=0 ; i < hotelID.length ; i++) {
+        console.log(hotelID[i])
+        console.log(event)
+        if (hotelID[i].latitude === event.latlng.lat && hotelID[i].longitude === event.latlng.lng) {
+            locationID = hotelID[i].destinationId
+            
+            detailsApi(locationID);
+            hotels[i].bindPopup("hello").openPopup();
+            
+        }
+    }
+}
 // renders landmark markers on to map
 renderLandmarks = () => {
     let landmarks ;
     for ( i=0 ; i < landmarkID.length ; i++){
         landmarks = L.marker([landmarkID[i].latitude,landmarkID[i].longitude], {
-            color: 'green'
+            color: 'green',
+            riseOnHover: true
         }).addTo(map);
+        // detailsApi();
      }
 };
+//handles the landmark location pop ups
+landmarkPopUp = () => {
+
+}
 // renders airport locations on to map
 renderAirports = () => {
     let airports ;
     
     for ( i=0 ; i < airportID.length ; i++){
         airports = L.marker([airportID[i].latitude, airportID[i].longitude], {
-            color: 'purple'
+            color: 'purple',
+            riseOnHover: true
         }).addTo(map);
+        // detailsApi();
      }
 };
+//handles the airport location popups
+airportPopUp = () => {
+
+}
 
 ///TO DO: create a event delegation function for markers that will call the locationApi with the targets destination ID
 
 
 cityApi();
 
-
-
+map.on('click', eventPopUp);
+map.on('click', hotelPopUp);
+map.on('click', landmarkPopUp);
+map.on('click', airportPopUp);
