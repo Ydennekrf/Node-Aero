@@ -15,7 +15,12 @@ let locationID;
 let hotels = [];
 let locationArr = [];
 
+// saving user data
 
+function userSave() {
+    let cityInput = document.getElementById("userInput").value;
+    console.log(cityInput);
+}
 
 // sets the city search data into local storage
 
