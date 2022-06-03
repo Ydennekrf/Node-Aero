@@ -13,10 +13,12 @@ cityInput= "toronto"
 let eventsArr = [];
 let locationID;
 let hotels = [];
+let locationArr = [];
 
 
 
 // sets the city search data into local storage
+
 cityApi = () => {
     const options = {
         method: 'GET',
@@ -34,7 +36,6 @@ cityApi = () => {
 
 // sets the location details into local storage
 detailsApi = (locationID) => {
-
     const options = {
         method: 'GET',
         headers: {
@@ -44,7 +45,7 @@ detailsApi = (locationID) => {
     };
     fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${locationID}&adults1=1&currency=USD&locale=en_US`, options)
         .then(response => response.json())
-        .then(response => console.log(response))
+        .then(response => localStorage.setItem("locationData", JSON.stringify(locationArr.push(response))))
         .catch(err => console.error(err));
 };         
 
@@ -141,7 +142,9 @@ renderHotels = () => {
                     ['hotel3', hotelID[2].latitude, hotelID[2].longitude]]
     for ( i=0 ; i < hotelID.length ; i++){
         locationID = hotelID[i].destinationId
+        
         detailsApi(locationID);
+        
        hotels = new L.marker([hotelLoc[i][1],hotelLoc[i][2]], {
            riseOnHover: true
        }).bindPopup(hotelLoc[i][0]).addTo(map); 
