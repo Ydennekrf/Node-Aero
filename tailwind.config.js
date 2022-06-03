@@ -8,7 +8,7 @@ module.exports = {
             backgroundImage: {
                 'skyline-art': 'NODE-AERO/images/skyline-art.png'
             }
-        }
+        },
       screens: {
         sm: '640px',
         md: '768px',
@@ -17,7 +17,7 @@ module.exports = {
         '2xl': '1536px',
       },
       colors: ({ colors }) => ({
-          'primary': '#3f3cbb'
+          'primary': '#3f3cbb',
           secondary: '#1A150F'
       }),
       columns: {
