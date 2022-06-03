@@ -15,11 +15,13 @@ let locationID;
 let hotels = [];
 let locationArr = [];
 
-// saving user data
+// saving user data to cityInput and redirecting to the search result page.
 
 function userSave() {
-    cityInput = document.getElementById("userInput").value;
+    cityInput = document.getElementById('searchBar').value;
     console.log(cityInput);
+    if (window.location('./index.html')) {
+    window.replace('./assets/html/search-result.html')};
 }
 
 // sets the city search data into local storage
@@ -167,3 +169,5 @@ renderHotels = () => {
 };
 
 cityApi();
+
+cityInputEl.addEventListener("submit", userSave);
