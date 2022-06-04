@@ -1,6 +1,23 @@
+#pic{
+  padding: 0px;
+}
+
+#footer{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  width: 100%;
+}
+
 #skyline-art {
     justify-content: center;
+    align-items: center;
     display: flex;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
