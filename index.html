@@ -37,21 +37,16 @@
           
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-
+          <form class="search-bar" action="">
+            <input type="search" required id="userInput">
+            <i class="fa fa-search" onclick=userSave()></i>
+          </form>  
           <p id="description"; class="text-black">Hover Over the Search Button and <br>Enter your City to find Hotels and Events Nearby!</p>
         </div>
       </div>
-
-      <form class="search-bar" action="">
-        <input type="search" required id="userInput">
-        <i class="fa fa-search" onclick=userSave()></i>
-      </form>        
       </header>
 </script>
 
-
-<div id="map"></div>
-<div id="footer"></div>
 <div id="skyline-art" style="background-image: url('./images/skyline-art.png');width: 600px; height: 400px; position:relative;" class="bg-[#fce595]  leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom">
 </div>
     <!--adds map javascript library  -->
