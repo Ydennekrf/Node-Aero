@@ -15,7 +15,7 @@ Below you will see the wireFrame and a mock up.
 wireframe
 ![wireframe](./images/wireframe.jpg)
 home page screen shot
-![homepage](./assets/images/quiz1.png)
+![homepage](./assets/images/)
 search page screen shot
 ![searchpage](./assets/images/quiz2.png)
 
