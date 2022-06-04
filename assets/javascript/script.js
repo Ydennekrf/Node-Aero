@@ -22,6 +22,8 @@ function userSave() {
     console.log(cityInput);
     
     window.location.replace = ('search-result.html');
+    map = map.remove();
+    cityApi();
 }
 
 // sets the city search data into local storage
@@ -31,7 +33,7 @@ cityApi = () => {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-            'X-RapidAPI-Key': '6524af2719msh3e65b8fd93f7037p1cda72jsndb7a478aac3b'
+            'X-RapidAPI-Key': '214a222431mshfe1d7815a87bb3dp1c5bfejsnf28fc17b052f'
         }
     }; 
     fetch(`https://hotels4.p.rapidapi.com/locations/v2/search?query=${cityInput}&locale=en_US&currency=CAD`, options)
@@ -47,7 +49,7 @@ detailsApi = (locationID) => {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-            'X-RapidAPI-Key': '6524af2719msh3e65b8fd93f7037p1cda72jsndb7a478aac3b'
+            'X-RapidAPI-Key': '214a222431mshfe1d7815a87bb3dp1c5bfejsnf28fc17b052f'
         }
     };
     fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${locationID}&adults1=1&currency=USD&locale=en_US`, options)
@@ -73,7 +75,7 @@ getLocationData = () => {
     maxZoom: 15,
     attribution: '© OpenStreetMap'
     }).addTo(map);
-  
+  console.log(hotelID)
     renderHotels();
     getGeohash();
 };
@@ -152,7 +154,7 @@ renderHotels = () => {
         let hotelAddress = hotelData[i].data.body.propertyDescription.address.fullAddress;
         let price = hotelData[i].data.body.propertyDescription.featuredPrice.currentPrice.plain;
         let rating = hotelData[i].data.body.guestReviews.brands.rating;
-        
+        console.log(hotelName)
         let hotelLoc = [[`<b>${hotelName}</b><br><p>Address: ${hotelAddress}<br>Rating: ${rating} out of 10<br>Price per night:${price}`, hotelID[0].latitude, hotelID[0].longitude],
                     [`<b>${hotelName}</b><br><p>Address: ${hotelAddress}<br>Rating: ${rating} out of 10<br>Price per night:${price}`, hotelID[1].latitude, hotelID[1].longitude],
                     [`<b>${hotelName}</b><br><p>Address: ${hotelAddress}<br>Rating: ${rating} out of 10<br>Price per night:${price}`, hotelID[2].latitude, hotelID[2].longitude]]
