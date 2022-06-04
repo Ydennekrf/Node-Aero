@@ -9,7 +9,7 @@ let landmarkID = [];
 let airportID = [];
 let map;
 let cityInputEl = document.getElementById('searchBar')
-let cityInput;
+let cityInput = "toronto";
 let eventsArr = [];
 let locationID;
 let hotels = [];
@@ -165,3 +165,13 @@ renderHotels = () => {
 cityApi();
 
 cityInputEl.addEventListener("submit", userSave);
+
+
+const clearInput = () => {
+    const input = document.getElementsByTagName("input")[0];
+    input.value = "";
+  }
+  
+  const clearBtn = document.getElementById("clear-btn");
+  clearBtn.addEventListener("click", clearInput);
+
