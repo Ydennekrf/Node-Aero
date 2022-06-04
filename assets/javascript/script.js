@@ -59,7 +59,8 @@ detailsApi = (locationID) => {
         )
         .catch(err => console.error(err));
 };         
-
+// stores the hotel data and sets where the map will display.
+//sends data to the geohash converter api and renders markers on map for hotels
 getLocationData = () => {
     response = JSON.parse(localStorage.getItem('cityData'))
     
@@ -86,7 +87,7 @@ getGeohash = () => {
         .then(getTicketmaster())
         .catch(err => console.error(err));
 };
-
+// takes the geohash code and searches for 20 music events in a 10 mile radius of the target location
 getTicketmaster = () => {
     let geoData = JSON.parse(localStorage.getItem('geoHash'))
     
@@ -102,7 +103,7 @@ getTicketmaster = () => {
         .catch(err => console.error(err))
 };
 
-//renders events onto map
+//renders events onto map with pop up information
 renderEvents = () => {
     let events;
     let eventData = JSON.parse(localStorage.getItem('eventData'))
@@ -139,7 +140,7 @@ renderEvents = () => {
         }).bindPopup(eventLoc[i][0]).addTo(map);
     }
 };
-//renders hotel markers onto map
+//renders hotel markers onto map with the pop up information
 renderHotels = () => { 
     let hotelData = JSON.parse(localStorage.getItem('locationData'))
     
@@ -163,10 +164,10 @@ renderHotels = () => {
 };
 
 cityApi();
-
+//event listener for the home page
 cityInputEl.addEventListener("submit", userSave);
 
-
+// clears the input field on the search bar in the search-results.html
 const clearInput = () => {
     const input = document.getElementsByTagName("input")[0];
     input.value = "";
