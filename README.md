@@ -15,9 +15,9 @@ Below you will see the wireFrame and a mock up.
 wireframe
 ![wireframe](./images/wireframe.jpg)
 home page screen shot
-![homepage](./assets/images/)
+![homepage](./images/HomePage.png)
 search page screen shot
-![searchpage](./assets/images/quiz2.png)
+![searchpage]()
 
 ## featured technologies
 
