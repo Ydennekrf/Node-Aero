@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Searh Result Page</title>
     <!--adds tailwind-->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- adds map css -->
@@ -14,42 +14,20 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body class="bg-[#fce595]">
-    
-    <div class="grid grid-cols-10 gap-4">
-        <div class=" bg-[#473f2b] group col-span-2  text-center space-y-10 w-auto hover:w-4/12 hover:col-span-1 h-screen border-r-4 border-sky-500">
-            <img src="../../images/zelda-logo.jpg" alt="">
-            <h2 class=" text-white text-4xl visible group-hover:invisible">Search:</h2>
-            <div class="text-white">
-                <h2 class="text-4xl visible group-hover:invisible">rating</h2>
-            </div>
+    <img src="../../images/zelda-logo.png" ; id="zelda"; alt="">
 
-            <div class="text-white">
-                <h2 class="text-4xl visible group-hover:invisible">distance</h2>
-            </div>
+    <h3 class= "text-2xl text-black text-center">Click on the Markers to View Info or Enter another Location</h3>
 
-            <div class="text-white">
-                <h2 class="text-4xl visible group-hover:invisible">money</h2>
-            </div>
-
-            <div class="relative button">
-                <button class="h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-90 absolute bottom-0 right-0" id="sidebar"></button>
-            </div>
-        </div>
-            
-   
-
-        <div class="col-span-8">
-
-            <div class="text-center">
-                <h1 class="text-5xl"><span id="cityName">City Name or Something</span></h1>
-            </div>
+    <form class="searchb" action="">
+                <input type="search" required id="userInput">
+                <i class="fa fa-search" onclick=userSave()></i>
+              </form>  
 
             <div class='flex items-center justify-center h-screen'>
                 <!--Adding the map here-->
                 <div id="map" style="height: 500px; width: 500px;"></div>
             </div>
-        </div>
-    </div>
+
 
 
 
