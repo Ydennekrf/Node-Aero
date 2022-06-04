@@ -1,13 +1,42 @@
+
+#pic{
+  justify-content: center;
+ 
+  padding: 0px;
+}
+
+#footer{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  width: 100%;
+}
+
+#description{
+  font-size: 19px;
+}
+
 #skyline-art {
     justify-content: center;
+    width: auto;
+    height: auto;
     display: flex;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
     width: 100%;
 }
 
-#zelda.map{
+#zelda-map{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
   padding: 0px;
 }
 
@@ -38,6 +67,8 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+  justify-content: center;
+  display: block;
 }
 *, *:before, *:after {
   -webkit-tap-highlight-color: transparent;
@@ -281,7 +312,7 @@ form:valid input{
   display: block;
   color: black;
   padding: 20px;
-  text-align: ;
+  text-align: center;
 }
 
 form:hover .fa,
