@@ -23,7 +23,8 @@ function userSave() {
     window.location.replace = ('search-result.html');
     if (map != undefined){
     map = map.remove()};
-    cityApi();}
+    cityApi();
+}
     
 }
 // sets the city search data into local storage
@@ -157,11 +158,3 @@ getTicketmaster().catch(error => {
 });
 cityApi();
 
-// clears the input field on the search bar in the search-results.html
-const clearInput = () => {
-    const input = document.getElementsByTagName("input")[0];
-    input.value = "";
-  }
-  
-  const clearBtn = document.getElementById("clear-btn");
-  clearBtn.addEventListener("click", clearInput);
