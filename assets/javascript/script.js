@@ -21,7 +21,7 @@ function userSave() {
     cityInput = document.getElementById('userInput').value;
     console.log(cityInput)
     if (cityInput){
-    window.location.replace = ('https://ydennekrf.github.io/Node-Aero/search-result.html');
+    window.location.replace('https://ydennekrf.github.io/Node-Aero/search-result.html');
     if (map != undefined){
     map = map.remove()};
     locationArr = [];
