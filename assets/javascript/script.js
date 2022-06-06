@@ -9,7 +9,7 @@ let landmarkID = [];
 let airportID = [];
 let map;
 let cityInputEl = document.getElementById('searchBar')
-let cityInput;
+let cityInput = "toronto";
 let eventsArr = [];
 let locationID;
 let hotels = [];
