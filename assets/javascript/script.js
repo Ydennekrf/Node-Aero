@@ -9,7 +9,7 @@ let landmarkID = [];
 let airportID = [];
 let map;
 let cityInputEl = document.getElementById('searchBar')
-let cityInput = "toronto";
+let cityInput;
 let eventsArr = [];
 let locationID;
 let hotels = [];
@@ -19,10 +19,12 @@ let locationArr = [];
 
 function userSave() {   
     cityInput = document.getElementById('userInput').value;
+    console.log(cityInput)
     if (cityInput){
-    window.location.replace = ('search-result.html');
+    window.location.replace = ('https://ydennekrf.github.io/Node-Aero/assets/html/search-result.html');
     if (map != undefined){
     map = map.remove()};
+    locationArr = [];
     cityApi();
 }
     
@@ -35,7 +37,7 @@ async function cityApi () {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-            'X-RapidAPI-Key': '214a222431mshfe1d7815a87bb3dp1c5bfejsnf28fc17b052f'
+            'X-RapidAPI-Key': 'da2a67df69msh64dfa9816cc282bp13e13djsna465e688114b'
         }
     }; 
     const response = await fetch(`https://hotels4.p.rapidapi.com/locations/v2/search?query=${cityInput}&locale=en_US&currency=CAD`, options);
@@ -73,7 +75,7 @@ async function detailsApi (locationID){
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-            'X-RapidAPI-Key': '214a222431mshfe1d7815a87bb3dp1c5bfejsnf28fc17b052f'}};
+            'X-RapidAPI-Key': 'da2a67df69msh64dfa9816cc282bp13e13djsna465e688114b'}};
 
     const response = await fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${locationID}&adults1=1&currency=USD&locale=en_US`, options);
     if (!response.ok) {
@@ -156,5 +158,6 @@ async function getTicketmaster(hashData) {
 getTicketmaster().catch(error => {
     error.message;
 });
+//calls cityApi on load into the search-result.html page.
 cityApi();
 
