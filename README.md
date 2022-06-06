@@ -13,11 +13,11 @@ The polished UI using HTML and tailwinds css is simple yet effective in its desi
 
 Below you will see the wireFrame and a mock up.
 wireframe
-![wireframe](./images/wireframe.jpg)
+![wireframe](./assets/images/wireframe.jpg)
 home page screen shot
-![homepage](./images/HomePage.png)
+![homepage](./assets/images/HomePage.png)
 search page screen shot
-![searchpage](./images/search-result.png)
+![searchpage](./assets/images/search-result.png)
 
 ## featured technologies
 
