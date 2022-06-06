@@ -14,8 +14,6 @@ The polished UI using HTML and tailwinds css is simple yet effective in its desi
 Below you will see the wireFrame and a mock up.
 wireframe
 ![wireframe](./assets/images/wireframe.jpg)
-home page screen shot
-![homepage](./assets/images/HomePage.png)
 search page screen shot
 ![searchpage](./assets/images/search-result.png)
 
