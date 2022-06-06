@@ -9,7 +9,7 @@ let landmarkID = [];
 let airportID = [];
 let map;
 let cityInputEl = document.getElementById('searchBar')
-let cityInput = "toronto";
+let cityInput;
 let eventsArr = [];
 let locationID;
 let hotels = [];
@@ -19,14 +19,18 @@ let locationArr = [];
 
 function userSave() {   
     cityInput = document.getElementById('userInput').value;
-    console.log(cityInput)
-    if (cityInput){
-    window.location.replace('https://ydennekrf.github.io/Node-Aero/search-result.html');
+    // console.log(cityInput)
+    // console.log("one")
+    // localStorage.setItem("city", JSON.stringify(cityInput))
+    // if (cityInput){
+    // window.location.replace('./search-result.html');
+    // cityInput = JSON.parse(localStorage.getItem("city"));
+    // console.log(cityInput)
     if (map != undefined){
     map = map.remove()};
     locationArr = [];
     cityApi();
-}
+// }
     
 }
 // sets the city search data into local storage
