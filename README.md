@@ -28,7 +28,7 @@ Below are links to the various 3rd party APIs and libraries used to compile this
 
 ## Installation
 
-  The website can be viewed through GitHub pages [here](https://ydennekrf.github.io/Node-Aero/)
+  The website can be viewed through GitHub pages [here](https://ydennekrf.github.io/Zelda-Travel-App/)
 
 ## Credits
 
